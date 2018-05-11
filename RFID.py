@@ -2,7 +2,7 @@
 # Librerias
 import serial
 import serial.tools.list_ports as listPorts
-from time import sleep
+import time
 
 
 # Clase que se encarga de lo que corresponde a recibir datos del serial.
@@ -30,17 +30,29 @@ class RFID():
     # Metodo de inicializacion del serial en python
     def init_serial(self):
         # Creamos la variable que va a escuchar por la frecuencia 9600 del serial.
-        self.serial = serial.Serial(self.port_names(), 9600, timeout = 1);
+        self.serial = serial.Serial(self.port_names(), 9600, timeout=1)
 
     # Metodo de obtencion de clave RFID a traves del puerto serial
     def get_id(self):
         # Inicializacion de la variable id para guardar las claves recibidas del serial
-        id = '';
+        id = ''
         # Ciclo que recibe los seriales en la linea de espera
         while (self.serial.inWaiting() > 0):
             # Parsea la linea del serial sin espacios en blanco
-            id = self.serial.readLine().decode('utf-8').strip()
+            id = self.serial.readline().decode('utf-8').strip()
         # Parsea la linea del serial sin espacios en blanco
-        id = self.serial.readLine().decode('utf-8').strip()
+        id = self.serial.readline().decode('utf-8').strip()
         # Regresa la clave
         return id
+
+
+def main():
+    ins = RFID()
+    ins.init_serial()
+    time.sleep(5)
+    while True:
+        print("{}".format(ins.get_id()))
+
+
+if __name__ == '__main__':
+    main()
