@@ -49,9 +49,10 @@ class RFID():
 def main():
     ins = RFID()
     ins.init_serial()
+    print("Iniciando Serial:\n {}".format(ins.serial))
     time.sleep(5)
     while True:
-        print("{}".format(ins.get_id()))
+        print("'{}'".format(ins.get_id()))
 
 
 if __name__ == '__main__':
