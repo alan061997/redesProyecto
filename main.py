@@ -4,21 +4,16 @@ from RFID import *
 from BD import *
 
 def main():
-    srl = RFID()
-    srl.init_serial()
-    print "Leyendo...\n"
-    time.sleep(3)
-
+    ins = RFID()
+    data = BD()
+    ins.init_serial()
+    print("Iniciando Serial:\n {}".format(ins.serial))
+    time.sleep(5)
     while True:
-        time.sleep(2)
-        id = srl.get_id()
-        print "\nID: " + id
+        data_serial = ins.get_id()
+        print("'{}'".format(data_serial))
+        data.insert_data(data_serial)
 
-        time.sleep(2)
-        print "\nRegistrando..."
-        bd = BD()
-        bd.insert_data(id)
-        time.sleep(2)
 
 if __name__ == '__main__':
     main()
