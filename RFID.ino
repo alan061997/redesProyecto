@@ -1,37 +1,6 @@
 /*
 Many thanks to nikxha from the ESP8266 forum
 */
-
-#include <ESP8266WiFi.h>
-#include <SPI.h>
-#include "MFRC522.h"
-
-/* wiring the MFRC522 to ESP8266 (ESP-12)
-RST     = GPIO5 (D1)
-SDA(SS) = GPIO4 (D2)
-MOSI    = GPIO13 (D7)
-MISO    = GPIO12 (D6)
-SCK     = GPIO14 (D5)
-GND     = GND
-3.3V    = 3.3V
-*/
-
-#define RST_PIN  5  // RST-PIN für RC522 - RFID - SPI - Modul GPIO5 
-#define SS_PIN  4  // SDA-PIN für RC522 - RFID - SPI - Modul GPIO4 
-
-const char *ssid =  "R0QU_2.4";     // change according to your Network - cannot be longer than 32 characters!
-const char *pass =  "7TtNW2f35bz_"; // change according to your Network
-
-MFRC522 mfrc522(SS_PIN, RST_PIN); // Create MFRC522 instance
-
-void setup() {
-  Serial.begin(115200);    // Initialize serial communications
-  delay(250);
-  Serial.println(F("Booting...."));
-  
-/*
-Many thanks to nikxha from the ESP8266 forum
-*/
 #include <ESP8266HTTPClient.h>
 #include <ESP8266WiFi.h>
 #include <SPI.h>
