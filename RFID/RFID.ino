@@ -21,12 +21,13 @@ GND     = GND
 #define RST_PIN  5  // RST-PIN für RC522 - RFID - SPI - Modul GPIO5 
 #define SS_PIN  4  // SDA-PIN für RC522 - RFID - SPI - Modul GPIO4 
 
-const char *ssid =  "Moto E (4) 6565";     // Cambiar de acuerdo a la RED
-const char *pass =  "12345678"; // Cambiar de acuerdo a la RED
-const char *hostGet = "192.168.43.73/test.php";
+const char *ssid =  "R0QU_2.4";     // Cambiar de acuerdo a la RED
+const char *pass =  "7TtNW2f35bz_"; // Cambiar de acuerdo a la RED
+const char *hostGet = "192.168.1.75/test.php";
 String id_string[] = {
   "D5 A5 E8 AB ",
-  "D0 7A 81 4D "
+  "D0 7A 81 4D ",
+  "66 EE C2 DB "
 };
 
 
@@ -89,7 +90,7 @@ void dump_byte_array(byte *buffer, byte bufferSize) {
 
   String ID_ULT_NUM = "1";
   
-  for (int i = 0; i < 3; i++){
+  for (int i = 0; i < 4; i++){
     if (UID == id_string[i]){
       ID_ULT_NUM = String(i+1);
       break;  
@@ -102,7 +103,7 @@ void dump_byte_array(byte *buffer, byte bufferSize) {
   
      HTTPClient http;                                                       //Declare object of class HTTPClient
   
-     http.begin("http://192.168.43.73/test.php");                            //Specify request destination
+     http.begin("http://192.168.1.75/test.php");                            //Specify request destination
      http.addHeader("Content-Type", "application/x-www-form-urlencoded");   //Specify content-type header
      String request = "TagID="+ID_ULT_NUM;
      int httpCode = http.POST(request);                                     //Send the request
